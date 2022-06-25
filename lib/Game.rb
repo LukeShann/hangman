@@ -15,6 +15,8 @@ class Game
   # TODO: serialize state func
   # TODO: save game func
   # TODO: Start game func
+  # TODO: Welcome func
+  # TODO: Load game func
 
   def pick_word
     # TODO: Pick word func
