@@ -7,13 +7,14 @@ class Game
     @state = {
       guesses: 0,
       wrong_letters: [],
-      word: pick_word
+      word: ''
     }
   end
 
   def play_game
     menu
     puts 'GAME STARTS'
+    puts @state[:word]
   end
 
   def menu
@@ -40,8 +41,7 @@ class Game
   end
 
   def pick_word
-    # TODO: Pick word func
-    'random'
+    @state[:word] = File.readlines('./dictionary.txt').sample.upcase.strip
   end
 
   # TODO: Display func
