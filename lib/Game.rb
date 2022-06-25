@@ -1,5 +1,4 @@
 require_relative 'text'
-require_relative 'menu'
 
 # TODO: Game class
 class Game
@@ -12,11 +11,33 @@ class Game
     }
   end
 
+  def play_game
+    menu
+    puts 'GAME STARTS'
+  end
+
+  def menu
+    puts messages[:welcome], messages[:new_or_load]
+    loop do
+      selection = gets.chomp.upcase
+      if selection == 'L'
+        load_save
+        break
+      elsif selection == 'N'
+        pick_word
+        break
+      end
+    end
+  end
+
   # TODO: serialize state func
   # TODO: save game func
   # TODO: Start game func
   # TODO: Welcome func
-  # TODO: Load game func
+
+  def load_save
+    # TODO: Load game func
+  end
 
   def pick_word
     # TODO: Pick word func
@@ -24,6 +45,6 @@ class Game
   end
 
   # TODO: Display func
-    # TODO: Render word helper func
+  # TODO: Render word helper func
   # TODO: Win game func
 end
