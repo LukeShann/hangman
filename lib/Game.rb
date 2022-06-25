@@ -1,8 +1,8 @@
 # TODO: Game class
-  # TODO: Variables for:
-    # TODO: Wrong guesses
-    # TODO: Array of wrong guesses
-    # TODO: Chosen word
+  # TODO: Serializable state hash for:
+    # TODO: Amount of wrong guesses to be pointer for hangman
+    # TODO: Array of wrong guessed letters
+    # TODO: The chosen word
   # TODO: Start game func
   # TODO: Pick word func 
   # TODO: Display func
