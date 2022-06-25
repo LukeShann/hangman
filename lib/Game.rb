@@ -1,10 +1,30 @@
+require_relative 'text'
+
 # TODO: Game class
-  # TODO: Serializable state hash for:
-    # TODO: Amount of wrong guesses to be pointer for hangman
-    # TODO: Array of wrong guessed letters
-    # TODO: The chosen word
+class Game
+  include Text
+  def initialize(state = {})
+    @state == state
+    if state.empty?
+      @state = {
+        guesses: 0,
+        wrong_letters: [],
+        word: pick_word
+      }
+    end
+  end
+
+  # TODO: serialize state func
+  # TODO: save game func
+
   # TODO: Start game func
-  # TODO: Pick word func 
+
+  def pick_word
+    # TODO: Pick word func
+    'random'
+  end
+
   # TODO: Display func
     # TODO: Render word helper func
   # TODO: Win game func
+end
