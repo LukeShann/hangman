@@ -1,34 +1,21 @@
 require_relative 'text'
 
-# TODO: Game class
 class Game
   include Text
-  def initialize
-    @state = {
-      guesses: 0,
-      wrong_letters: [],
-      word: ''
-    }
+  def initialize(menu, state = {})
+    @menu = menu
+    @state = state
+    if state.empty?
+      @state = {
+        guesses: 0,
+        wrong_letters: [],
+        word: pick_word
+      }
+    end
   end
 
   def play_game
-    menu
-    puts 'GAME STARTS'
     puts @state[:word]
-  end
-
-  def menu
-    puts messages[:welcome], messages[:new_or_load]
-    loop do
-      selection = gets.chomp.upcase
-      if selection == 'L'
-        load_save
-        break
-      elsif selection == 'N'
-        pick_word
-        break
-      end
-    end
   end
 
   # TODO: serialize state func
