@@ -1,7 +1,10 @@
 require_relative 'text'
+require_relative 'screen'
 
 class Menu
   include Text
+  include Screen
+
   def initialize
     start_menu
     @game.play_game
@@ -12,7 +15,7 @@ class Menu
   end
 
   def start_menu
-    puts messages[:welcome], messages[:new_or_load]
+    print_message(messages[:welcome], messages[:new_or_load], messages[:new_or_load_option])
     loop do
       selection = gets.chomp.upcase
       if selection == 'L'
