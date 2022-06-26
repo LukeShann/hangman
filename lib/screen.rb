@@ -1,4 +1,5 @@
 module Screen
+  include Text
   SCREEN_WIDTH = 80
 
   def clear
@@ -13,8 +14,9 @@ module Screen
     puts "\n\n"
   end
 
-  def print_board(moves = 0)
-    puts 'THIS IS THE BOARD'
+  def print_board(index = 0)
+    # TODO: Print word underneath board
+    puts boards[index]
   end
 
   private

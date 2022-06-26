@@ -9,4 +9,15 @@ module Text
       wrong_choices: "Wrong letters ="
      }
   end
+
+  def boards
+    ['BOARD 0',
+     'BOARD 1',
+     'BOARD 2',
+     'BOARD 3',
+     'BOARD 4',
+     'BOARD 5',
+     'BOARD 6',
+    ]
+  end
 end
