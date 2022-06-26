@@ -11,8 +11,8 @@ class Game
     if state.empty?
       @state = {
         guesses: 0,
-        picked_letters: [],
         word: pick_word,
+        picked_letters: [],
         game_over: false
       }
     end
@@ -20,18 +20,30 @@ class Game
 
   def play_game
     loop do
-      display_game
+      render
       # evaluate_guess(get_guess)
+      get_guess
       @state[:game_over] = true
       break if @state[:game_over]
       # if game is won, break
     end
   end
 
+  def get_guess
+    guess = ''
+    loop do
+      guess = gets.chomp.upcase
+      continue if guess.length != 1
+      continue if guess.match(/[A-Z]/) == nil
+      continue if @
+    end
+    guess
+  end
+
+
   # TODO: serialize state func
   # TODO: save game func
-  # TODO: Start game func
-  # TODO: Welcome func
+  # TODO: Win game func
 
   def load_save
     # TODO: Load game func
@@ -41,12 +53,11 @@ class Game
     @state[:word] = File.readlines('./dictionary.txt').sample.upcase.strip
   end
 
-  # TODO: Display func
-  def display_game
+  def render
     clear
     print_board(@state[:guesses])
     print_message(format_word)
-    print_message(messages[:wrong_choices], wrong_choices)
+    print_message(messages[:wrong_choices], wrong_choices, messages[:pick_letter])
   end
 
   def format_word
@@ -59,6 +70,4 @@ class Game
     @state[:picked_letters].select { |letter| !@state[:word].include?(letter) }
   end
 
-  # TODO: Render word helper func
-  # TODO: Win game func
 end
