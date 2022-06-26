@@ -7,7 +7,7 @@ module Text
       new_or_load: "Would you like to start a new game or load a save?",
       new_or_load_option: "- Enter 'N' for new or 'L' to load -",
       wrong_choices: "Wrong letters:",
-      pick_letter: "Pick a letter!"
+      pick_letter: "Pick a letter or enter 'save' to save game for later!"
      }
   end
 
@@ -19,6 +19,8 @@ module Text
      'BOARD 4',
      'BOARD 5',
      'BOARD 6',
+     'BOARD 7',
+     'BOARD 8',
     ]
   end
 end

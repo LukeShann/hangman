@@ -1,0 +1,1 @@
+{"wrong_guesses":6,"word":"GREENE","displayed_letters":["_","_","E","E","_","E"],"picked_letters":["A","S","L","I","O","U"],"game_over":false}

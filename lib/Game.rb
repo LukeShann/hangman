@@ -1,5 +1,6 @@
 require_relative 'text'
 require_relative 'screen'
+require 'JSON'
 
 class Game
   include Text
@@ -22,16 +23,18 @@ class Game
   def play_game
     loop do
       render
-      evaluate_guess(get_guess)
+      guess = get_guess
+      break if guess == 'SAVE'
+      evaluate_guess(guess)
       break if @state[:game_over]
     end
-    'The gig is up'
   end
 
   def get_guess
     guess = ''
     loop do
       guess = gets.chomp.upcase
+      return guess if guess == 'SAVE'
       next if guess.length != 1
       next if guess.match(/[A-Z]/) == nil
       next if @state[:picked_letters].include?(guess)
@@ -61,11 +64,17 @@ class Game
 
   # TODO: serialize state func
   # TODO: save game func
-  # TODO: Win game func
 
   def load_save
     # TODO: Load game func
   end
+
+  def save_game
+    File.open('./saved_game.txt', 'w') { |file| file.write(@state.to_json) }
+    # TODO: exit program here
+    'GAME ENDS'
+  end
+
 
   def pick_word
     @state[:word] = File.readlines('./dictionary.txt').sample.upcase.strip
