@@ -10,8 +10,9 @@ class Game
     @state = state
     if state.empty?
       @state = {
-        guesses: 0,
+        wrong_guesses: 0,
         word: pick_word,
+        displayed_letters: word_negative(@state[:word]),
         picked_letters: [],
         game_over: false
       }
@@ -21,25 +22,42 @@ class Game
   def play_game
     loop do
       render
-      # evaluate_guess(get_guess)
-      get_guess
-      @state[:game_over] = true
+      evaluate_guess(get_guess)
       break if @state[:game_over]
-      # if game is won, break
     end
+    'The gig is up'
   end
 
   def get_guess
     guess = ''
     loop do
       guess = gets.chomp.upcase
-      continue if guess.length != 1
-      continue if guess.match(/[A-Z]/) == nil
-      continue if @
+      next if guess.length != 1
+      next if guess.match(/[A-Z]/) == nil
+      next if @state[:picked_letters].include?(guess)
+      break
     end
     guess
   end
 
+  def evaluate_guess(guess)
+    if @state[:word].include?(guess)
+      @state[:word].split('').each_with_index do |letter, i|
+        @state[:displayed_letters][i] = letter if letter == guess
+      end
+      game_over(true) unless @state[:displayed_letters].include?('_')
+    else
+      @state[:picked_letters] << guess
+      @state[:wrong_guesses] += 1
+    end
+    game_over(false) if @state[:wrong_guesses] > 7
+  end
+
+  def game_over(won)
+    render
+    puts won ? 'You WIN!' : 'You Lose!'
+    @state[:game_over] = true
+  end
 
   # TODO: serialize state func
   # TODO: save game func
@@ -53,21 +71,17 @@ class Game
     @state[:word] = File.readlines('./dictionary.txt').sample.upcase.strip
   end
 
+  def word_negative(word)
+    Array.new(word.length, '_')
+  end
+
   def render
     clear
-    print_board(@state[:guesses])
-    print_message(format_word)
-    print_message(messages[:wrong_choices], wrong_choices, messages[:pick_letter])
+    print_board(@state[:wrong_guesses])
+    print_message(@state[:displayed_letters].join(' '))
+    print_message(
+      messages[:wrong_choices],
+      @state[:picked_letters].join(' '),
+      messages[:pick_letter])
   end
-
-  def format_word
-    arr = @state[:word].split('')
-    formatted = arr.map { |letter| @state[:picked_letters].include?(letter) ? letter : '_'}
-    formatted.join(' ')
-  end
-
-  def wrong_choices
-    @state[:picked_letters].select { |letter| !@state[:word].include?(letter) }
-  end
-
 end
