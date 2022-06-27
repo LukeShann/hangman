@@ -1,4 +1,5 @@
-# TODO: text module
+require 'colorize'
+
 module Text
   # TODO: Screen clear func
   # TODO: Play display
@@ -10,8 +11,8 @@ module Text
       pick_letter: "Pick a letter or enter 'save' to save game for later!",
       invalid_letter: "Not a valid letter! Enter just a letter or 'save'!",
       already_picked_letter: "Already picked '#{sub}'! Pick again or 'save'!",
-      won: "Nice one! You won!",
-      lost: "Uhoh! Game over! The word was: #{sub}"
+      won: "Nice one! You won!".green,
+      lost: "Uhoh! Game over! The word was: #{sub}".red
      }
   end
 

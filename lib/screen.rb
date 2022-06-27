@@ -1,5 +1,6 @@
 module Screen
   include Text
+
   SCREEN_WIDTH = 80
 
   def clear
@@ -15,14 +16,19 @@ module Screen
   end
 
   def print_board(index = 0)
-    # TODO: Print word underneath board
-    puts boards[index]
+    lines = boards[index].split("\n")
+    offset = SCREEN_WIDTH / 2 - 9
+    lines.each do |line|
+      offset.times { print ' ' }
+      puts line
+    end
   end
 
   private
 
   def print_message_line(content)
     margin = (SCREEN_WIDTH - content.length) / 2 - 2
+    margin += 7 if content.start_with?("\e")
     print "="
     margin.times { print ' ' }
     print " #{content} "
