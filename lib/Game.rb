@@ -24,7 +24,10 @@ class Game
     loop do
       render
       guess = get_guess
-      break if guess == 'SAVE'
+      if guess == 'SAVE'
+        save_game
+        break
+      end
       evaluate_guess(guess)
       break if @state[:game_over]
     end
@@ -53,7 +56,7 @@ class Game
       @state[:picked_letters] << guess
       @state[:wrong_guesses] += 1
     end
-    game_over(false) if @state[:wrong_guesses] > 9
+    game_over(false) if @state[:wrong_guesses] > 7
   end
 
   def game_over(won)
@@ -64,8 +67,6 @@ class Game
 
   def save_game
     File.open('./saved_game.txt', 'w') { |file| file.write(@state.to_json) }
-    # TODO: exit program here
-    'GAME ENDS'
   end
 
 
