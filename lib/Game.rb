@@ -15,7 +15,8 @@ class Game
         word: pick_word,
         displayed_letters: word_negative(@state[:word]),
         picked_letters: [],
-        game_over: false
+        game_over: false,
+        message: messages[:pick_letter]
       }
     end
   end
@@ -36,13 +37,21 @@ class Game
   def get_guess
     guess = ''
     loop do
+      render
       guess = gets.chomp.upcase
+      render
       return guess if guess == 'SAVE'
-      next if guess.length != 1
-      next if guess.match(/[A-Z]/) == nil
-      next if @state[:picked_letters].include?(guess)
+      if guess.length != 1 || guess.match(/[A-Z]/) == nil
+        @state[:message] = messages[:invalid_letter]
+        next
+      end
+      if @state[:picked_letters].include?(guess)
+        @state[:message] = messages(guess)[:already_picked_letter]
+        next
+      end
       break
     end
+    @state[:message] = messages[:pick_letter]
     guess
   end
 
@@ -60,8 +69,8 @@ class Game
   end
 
   def game_over(won)
+    @state[:message] = won ? messages[:won] : messages(@state[:word])[:lost]
     render
-    puts won ? 'You WIN!' : 'You Lose!'
     @state[:game_over] = true
   end
 
@@ -85,6 +94,6 @@ class Game
     print_message(
       messages[:wrong_choices],
       @state[:picked_letters].join(' '),
-      messages[:pick_letter])
+      @state[:message])
   end
 end

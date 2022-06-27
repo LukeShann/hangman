@@ -1,1 +1,1 @@
-{"wrong_guesses":2,"word":"NEARLY","displayed_letters":["_","_","A","R","_","_"],"picked_letters":["S","V"],"game_over":false}
+{"wrong_guesses":7,"word":"MSGSTR","displayed_letters":["_","_","_","_","_","_"],"picked_letters":["A","I","O","U","E","Y","P"],"game_over":false,"message":"Pick a letter or enter 'save' to save game for later!"}

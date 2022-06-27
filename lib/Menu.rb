@@ -21,6 +21,7 @@ class Menu
   end
 
   def start_menu
+    clear
     print_message(messages[:welcome], messages[:new_or_load], messages[:new_or_load_option])
     loop do
       selection = gets.chomp.upcase
