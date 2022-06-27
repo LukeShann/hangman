@@ -17,16 +17,7 @@ class Menu
 
   def load_save
     save = File.read('./saved_game.txt')
-    # TODO: Find out how to convert string keys to symbols
-    parsed = JSON.parse(save, symbols: true)
-    # Temp long version to translate strings to symbols
-    {
-      wrong_guesses: parsed['wrong_guesses'],
-      word: parsed['word'],
-      displayed_letters: parsed['displayed_letters'],
-      picked_letters: parsed['picked_letters'],
-      game_over: parsed['game_over']
-    }
+    JSON.parse(save, symbolize_names: true)
   end
 
   def start_menu

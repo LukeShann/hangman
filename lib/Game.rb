@@ -53,20 +53,13 @@ class Game
       @state[:picked_letters] << guess
       @state[:wrong_guesses] += 1
     end
-    game_over(false) if @state[:wrong_guesses] > 7
+    game_over(false) if @state[:wrong_guesses] > 9
   end
 
   def game_over(won)
     render
     puts won ? 'You WIN!' : 'You Lose!'
     @state[:game_over] = true
-  end
-
-  # TODO: serialize state func
-  # TODO: save game func
-
-  def load_save
-    # TODO: Load game func
   end
 
   def save_game
