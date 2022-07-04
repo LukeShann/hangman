@@ -1,1 +1,1 @@
-{"wrong_guesses":7,"word":"MSGSTR","displayed_letters":["_","_","_","_","_","_"],"picked_letters":["A","I","O","U","E","Y","P"],"game_over":false,"message":"Pick a letter or enter 'save' to save game for later!"}
+{"wrong_guesses":1,"word":"SEEMS","displayed_letters":["S","_","_","_","S"],"picked_letters":["A"],"game_over":false,"message":"Pick a letter or enter 'save' to save game for later!"}
