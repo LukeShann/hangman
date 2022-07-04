@@ -28,6 +28,7 @@ module Screen
 
   def print_message_line(content)
     margin = (SCREEN_WIDTH - content.length) / 2 - 2
+    # For colorized input
     margin += 7 if content.start_with?("\e")
     print "="
     margin.times { print ' ' }

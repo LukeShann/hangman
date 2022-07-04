@@ -16,7 +16,7 @@ class Menu
   end
 
   def load_save
-    save = File.read('./saved_game.txt')
+    save = File.read('../saved_game.txt')
     JSON.parse(save, symbolize_names: true)
   end
 
@@ -26,7 +26,7 @@ class Menu
     loop do
       selection = gets.chomp.upcase
       if selection == 'L'
-        if File.exist?('./saved_game.txt')
+        if File.exist?('../saved_game.txt')
           @game = Game.new(self, load_save)
         else
           puts 'No save file found'

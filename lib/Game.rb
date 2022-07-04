@@ -75,12 +75,12 @@ class Game
   end
 
   def save_game
-    File.open('./saved_game.txt', 'w') { |file| file.write(@state.to_json) }
+    File.open('../saved_game.txt', 'w') { |file| file.write(@state.to_json) }
   end
 
 
   def pick_word
-    @state[:word] = File.readlines('./dictionary.txt').sample.upcase.strip
+    @state[:word] = File.readlines('../dictionary.txt').sample.upcase.strip
   end
 
   def word_negative(word)
